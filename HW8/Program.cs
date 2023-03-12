@@ -162,15 +162,47 @@ void Show2DArray(int[,] array)
 // int[,,] CreateRandom3DArray(int rows, int colums, int section,int minValue, int maxValue)
 // {
 //     int[,,] array = new int[rows,colums,section];
-//     for (int i=0;i<rows;i++)
+    
+//     int[] nonRepeat1DArray = new int[rows*colums*section];
+//     if ((maxValue+1-minValue)<(rows*colums*section)){return array;}
+//     else
 //     {
-//         for (int j=0;j<colums;j++)
+//         for (int i = 0; i < rows * colums * section; i++)
 //         {
-//             for (int k=0;k<colums;k++)
-//             {array[i,j,k]=new Random().Next(minValue,maxValue+1);}
+//             bool repeat =true;
+//             do
+//             {
+//                 nonRepeat1DArray[i] = new Random().Next(minValue, maxValue + 1);
+//                 repeat = NoRepeat(nonRepeat1DArray,i);
+//             }
+//             while (repeat);
+//         }
+
+//     }
+//      //нарезка в трехмерный
+//    int s=0;
+//     for (int i = 0; i < rows; i++)
+//     {
+//         for (int j = 0; j < colums; j++)
+//         {
+//             for (int k = 0; k < section; k++)
+//             {
+//                 array[i,j,k] = nonRepeat1DArray[s];
+//                 s++;
+//             }
 //         }
 //     }
-//    return array;
+//     return array;
+// }
+// //do not repeat this element
+// bool NoRepeat(int [] array, int iend)
+// {
+//     bool repeat=false;
+//     for (int i=0;i<iend;i++)
+//     {
+//        if(array[iend]==array[i]){repeat=true;break;}
+//     }
+//     return repeat;
 // }
 // //show array 
 // void Show3DArray(int[,,] array)
@@ -204,47 +236,47 @@ void Show2DArray(int[,] array)
 // Show3DArray(myArray);
 
 //**************************************************************************************************
-//Напишите программу, которая заполнит спирально массив 4 на 4.
-//Method FillArray
-int[,] Fill2DArray(int rows, int colums)
-{
-    int[,] array = new int[rows,colums];
-    int i=0, j=0;
-    int di=0; //rows direction from start point [0,0]
-    int dj=1; //column direction from start point [0,0]
-    int changeNeed=0; //if=1 then we have to change direction next step, 0 - no need
-    int temp=0; //temp value to provide change direction
-    for (int k=0;k<rows*colums;k++)
-    {
-        array[i,j]=k+1;
-        Show2DArray(array);
-        //Need to change direction?
-        if ( i+di>rows-1 || i+di<0 || j+dj>colums-1 || j+dj<0) {changeNeed=1;} //out of range condition
-        else
-        {
-            if(array[i+di,j+dj]!=0) //in range filled element forvard
-            {changeNeed=1;}
-        }
-        //change direction
-        if(changeNeed==1)
-        {
-            temp=di;
-            di=dj;
-            dj=-temp;
-            changeNeed=0;
-        }
-        //next position
-        i=i+di; 
-        j=j+dj;
-    }
-    return array;
-}
+// //Напишите программу, которая заполнит спирально массив 4 на 4.
+// //Method FillArray
+// int[,] Fill2DArray(int rows, int colums)
+// {
+//     int[,] array = new int[rows,colums];
+//     int i=0, j=0;
+//     int di=0; //rows direction from start point [0,0]
+//     int dj=1; //column direction from start point [0,0]
+//     int changeNeed=0; //if=1 then we have to change direction next step, 0 - no need
+//     int temp=0; //temp value to provide change direction
+//     for (int k=0;k<rows*colums;k++)
+//     {
+//         array[i,j]=k+1;
+//         Show2DArray(array);
+//         //Need to change direction?
+//         if ( i+di>rows-1 || i+di<0 || j+dj>colums-1 || j+dj<0) {changeNeed=1;} //out of range condition
+//         else
+//         {
+//             if(array[i+di,j+dj]!=0) //in range filled element forvard
+//             {changeNeed=1;}
+//         }
+//         //change direction
+//         if(changeNeed==1)
+//         {
+//             temp=di;
+//             di=dj;
+//             dj=-temp;
+//             changeNeed=0;
+//         }
+//         //next position
+//         i=i+di; 
+//         j=j+dj;
+//     }
+//     return array;
+// }
 
-//Input
-Console.WriteLine("Input number of rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Input number of colums: ");
-int colums = Convert.ToInt32(Console.ReadLine());
+// //Input
+// Console.WriteLine("Input number of rows: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Input number of colums: ");
+// int colums = Convert.ToInt32(Console.ReadLine());
 
-//Calculations
-int[,] myArray = Fill2DArray(rows, colums);
+// //Calculations
+// int[,] myArray = Fill2DArray(rows, colums);
